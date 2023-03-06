@@ -1,14 +1,14 @@
 package funkies.errors;
 
-import funkies.SystemCode;
+import funkies.SystemErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 //100-199
 @Getter
 @RequiredArgsConstructor
-public enum UserError implements SystemCode {
-    ACCESS_DENIED(100, "User has not required roles");
+public enum UserError implements SystemErrorCode {
+    ACCESS_DENIED(100, "Access is denied for this user");
 
     final int code;
 
