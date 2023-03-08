@@ -1,6 +1,7 @@
 package funkies;
 
 import funkies.LocalizedErrorMessages.Lang;
+import funkies.errors.SystemErrorCode;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 

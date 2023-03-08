@@ -1,5 +1,6 @@
 package funkies;
 
+import funkies.errors.SystemErrorCode;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;

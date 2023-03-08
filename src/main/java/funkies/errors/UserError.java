@@ -1,6 +1,5 @@
 package funkies.errors;
 
-import funkies.SystemErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

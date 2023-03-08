@@ -11,39 +11,41 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 
 class SystemExceptionTest {
-    
-    
+
+
     @Test
-    void systemExceptionIsThrowable(){
+    void systemExceptionIsThrowable() {
 
         var systemException = SystemException.builder()
                 .code(UserError.ACCESS_DENIED)
                 .buildAndLog();
-        
-        assertThatCode( () -> { throw systemException; } )
+
+        assertThatCode(() -> {
+            throw systemException;
+        })
                 .extracting(SystemException.class::cast)
                 .extracting(SystemException::getCode)
                 .isEqualTo(UserError.ACCESS_DENIED);
     }
-    
+
     @Test
-    void differentCodesMakesDifferentExceptions(){
+    void differentCodesMakesDifferentExceptions() {
         var deniedException = SystemException.builder()
                 .code(UserError.ACCESS_DENIED)
                 .buildAndLog();
-        
+
         var notExistsException = SystemException.builder()
                 .code(DataError.NOT_EXISTS)
                 .buildAndLog(UUID.randomUUID());
-        
-        
+
+
         assertThat(deniedException)
                 .isNotEqualTo(notExistsException);
     }
-    
-    
+
+
     @Test
-    void sameCodesMakesSameExceptions(){
+    void sameCodesMakesSameExceptions() {
         var deniedException = SystemException.builder()
                 .code(UserError.ACCESS_DENIED)
                 .buildAndLog();
@@ -55,31 +57,17 @@ class SystemExceptionTest {
         assertThat(deniedException)
                 .isEqualTo(anotherDeniedException);
     }
-    
+
     @Test
-    void systemExceptionHasParametrizedMessages(){
+    void systemExceptionHasParametrizedMessages() {
         var idToLog = 10;
         var notExistsException = SystemException.builder()
                 .code(DataError.NOT_EXISTS)
                 .buildAndLog(idToLog);
-        
+
         assertThat(notExistsException.getMessage())
                 .isEqualTo("Data with id [{}] doesn't exists");
     }
-    
-    @Test
-    void canCreateCodeOnFly(){
-        var adHocException = SystemException.builder()
-                .code(() -> 123)
-                .buildAndLog();
 
-        assertThatCode( () -> { throw adHocException; } )
-                .hasMessage("System Error")
-                .extracting(SystemException.class::cast)
-                .extracting(ex -> ex.getCode().name())
-                .isEqualTo("123");
-               
-    }
-    
 
 }

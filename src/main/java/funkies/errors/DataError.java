@@ -1,6 +1,5 @@
 package funkies.errors;
 
-import funkies.SystemErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -9,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DataError implements SystemErrorCode {
     NOT_EXISTS(200, "Data with id [{}] doesn't exists"),
-    NO_ACCESS(201, "Access to data is forbidden");;
+    NO_ACCESS(201, "Access to data is forbidden");
 
     final int code;
 

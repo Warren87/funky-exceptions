@@ -15,11 +15,9 @@ class LocalizedErrorMessages {
         throw new UnsupportedOperationException();
     }
 
-    private static final Map<Lang, Properties> ERROR_MESSAGES;
+    private static final Map<Lang, Properties> ERROR_MESSAGES = new EnumMap<>(Lang.class);
 
     static {
-        ERROR_MESSAGES = new EnumMap<>(Lang.class);
-
         for (Lang lang : Lang.values()) {
             ERROR_MESSAGES.put(lang, loadResource(lang));
         }
